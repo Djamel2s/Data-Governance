@@ -1,0 +1,16 @@
+table,column,business_meaning,data_type,unit_or_format,allowed_values_or_range,nullable_Y_N,example_value,personal_data_Y_N,classification,owner,source_system
+stg_orders,order_id,Technical identifier for a ShopFast order.,INTEGER,Whole-number identifier,,N,700013,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.orders
+stg_orders,customer_id,Identifier of the customer account that placed the order.,INTEGER,Integer account ID,,Y,10034,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.orders
+stg_orders,order_date,Calendar date on which the order was placed.,DATE,ISO date (YYYY-MM-DD),,Y,2025-09-06,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.orders
+stg_orders,status,Standardized lifecycle status of the order.,VARCHAR,Lowercase standardized text,"pending; shipped; delivered; cancelled; returned",Y,delivered,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.orders
+stg_orders,channel,Sales channel through which the order was placed.,VARCHAR,Text value,,Y,marketplace,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.orders
+stg_orders,shipping_country,"Country code for the order's shipping destination.",VARCHAR,ISO 3166-1 alpha-2,,Y,ES,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.orders
+stg_orders,total_amount_eur,"Total order amount in euros, stored with two decimal places.","DECIMAL(10,2)","EUR, 2 decimal places",,Y,54.50,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.orders
+stg_payments,payment_id,Technical identifier for a payment event.,INTEGER,Integer identifier,,N,900001,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.payments
+stg_payments,order_id,Identifier of the order associated with the payment.,INTEGER,Integer order identifier,,Y,700002,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.payments
+stg_payments,payment_date,Date on which the payment event was recorded.,DATE,ISO date (YYYY-MM-DD),,Y,2026-10-08,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.payments
+stg_payments,method,Payment method used for the transaction.,VARCHAR,Text value,,Y,apple_pay,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.payments
+stg_payments,amount,"Payment amount in euros, represented to two decimal places.","DECIMAL(12,2)","EUR, 2 decimal places; not cents",,Y,217.38,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.payments
+stg_payments,currency,"Currency code for the payment; the supplied dataset uses EUR.",VARCHAR,Uppercase currency code,EUR,Y,EUR,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.payments
+stg_payments,card_last4,"Last four digits of the payment card, when supplied.",VARCHAR,Up to four digits; may be null,,Y,6552,Y,restricted,Sara Martin (Head of Sales),shopfast_raw.payments
+stg_payments,payment_status,Whether the payment event was captured or refunded.,VARCHAR,Lowercase text status,"captured; refunded",Y,captured,Y,confidential,Sara Martin (Head of Sales),shopfast_raw.payments

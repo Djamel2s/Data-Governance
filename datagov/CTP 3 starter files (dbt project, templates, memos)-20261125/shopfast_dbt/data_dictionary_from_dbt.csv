@@ -1,0 +1,61 @@
+model,column,description,pii,classification,model_owner,domain,tier
+stg_orders,order_id,Technical identifier for a ShopFast order.,True,confidential,Sara Martin (Head of Sales),sales,gold
+stg_orders,customer_id,Identifier of the customer account that placed the order.,True,confidential,Sara Martin (Head of Sales),sales,gold
+stg_orders,order_date,Calendar date on which the order was placed.,True,confidential,Sara Martin (Head of Sales),sales,gold
+stg_orders,status,Standardized lifecycle status of the order.,True,confidential,Sara Martin (Head of Sales),sales,gold
+stg_orders,channel,Sales channel through which the order was placed.,True,confidential,Sara Martin (Head of Sales),sales,gold
+stg_orders,shipping_country,Country code for the order's shipping destination.,True,confidential,Sara Martin (Head of Sales),sales,gold
+stg_orders,total_amount_eur,"Total order amount in euros, stored with two decimal places.",True,confidential,Sara Martin (Head of Sales),sales,gold
+stg_products,product_id,Technical identifier for a catalogue product.,False,,Product Lead,product,gold
+stg_products,sku,ShopFast stock keeping unit used to identify the product.,False,,Product Lead,product,gold
+stg_products,product_name,Product name shown in the ShopFast catalogue.,False,,Product Lead,product,gold
+stg_products,category,Normalized product category.,False,,Product Lead,product,gold
+stg_products,list_price_eur,Product list price in euros.,False,,Product Lead,product,gold
+stg_products,supplier,Supplier listed for the product.,False,,Product Lead,product,gold
+stg_products,is_active,Whether the product is currently active in the catalogue.,False,,Product Lead,product,gold
+stg_order_items,order_item_id,Technical identifier for an order line.,True,confidential,Sara Martin (Head of Sales),sales,gold
+stg_order_items,order_id,Identifier of the order containing this product line.,True,confidential,Sara Martin (Head of Sales),sales,gold
+stg_order_items,product_id,Identifier of the product included in this order line.,True,confidential,Sara Martin (Head of Sales),sales,gold
+stg_order_items,quantity,Number of product units in this order line.,True,confidential,Sara Martin (Head of Sales),sales,gold
+stg_order_items,unit_price_eur,Price per product unit in euros.,True,confidential,Sara Martin (Head of Sales),sales,gold
+stg_customers,customer_id,Technical identifier of the customer account. One person may have several accounts (see duplicates).,True,confidential,Sara Martin (Head of Sales),customer,gold
+stg_customers,email,"Login email, trimmed and lower-cased.",True,confidential,Sara Martin (Head of Sales),customer,gold
+stg_customers,first_name,Customer's first name.,True,confidential,Sara Martin (Head of Sales),customer,gold
+stg_customers,last_name,Customer's last name.,True,confidential,Sara Martin (Head of Sales),customer,gold
+stg_customers,phone,Customer phone number as supplied by the source system.,True,restricted,Sara Martin (Head of Sales),customer,gold
+stg_customers,birth_date,"Customer date of birth, parsed as a date.",True,restricted,Sara Martin (Head of Sales),customer,gold
+stg_customers,city,City associated with the customer's address.,True,confidential,Sara Martin (Head of Sales),customer,gold
+stg_customers,country_code,Standardized two-letter country code for the customer.,True,confidential,Sara Martin (Head of Sales),customer,gold
+stg_customers,signup_date,Date the customer account was registered.,True,confidential,Sara Martin (Head of Sales),customer,gold
+stg_customers,has_marketing_consent,Whether the customer has given consent to marketing.,True,confidential,Sara Martin (Head of Sales),customer,gold
+stg_customers,loyalty_tier,Customer's normalized loyalty program tier.,True,confidential,Sara Martin (Head of Sales),customer,gold
+stg_payments,payment_id,Technical identifier for a payment event.,True,confidential,Sara Martin (Head of Sales),finance,gold
+stg_payments,order_id,Identifier of the order associated with the payment.,True,confidential,Sara Martin (Head of Sales),finance,gold
+stg_payments,payment_date,Date on which the payment event was recorded.,True,confidential,Sara Martin (Head of Sales),finance,gold
+stg_payments,method,Payment method used for the transaction.,True,confidential,Sara Martin (Head of Sales),finance,gold
+stg_payments,amount,"Payment amount in euros, represented to two decimal places.",True,confidential,Sara Martin (Head of Sales),finance,gold
+stg_payments,currency,Currency code for the payment; the supplied dataset uses EUR.,True,confidential,Sara Martin (Head of Sales),finance,gold
+stg_payments,card_last4,"Last four digits of the payment card, when supplied.",True,restricted,Sara Martin (Head of Sales),finance,gold
+stg_payments,payment_status,Whether the payment event was captured or refunded.,True,confidential,Sara Martin (Head of Sales),finance,gold
+dim_customers,customer_id,Technical identifier for the customer account.,True,confidential,Sara Martin (Head of Sales),customer,gold
+dim_customers,first_name,Customer's first name.,True,confidential,Sara Martin (Head of Sales),customer,gold
+dim_customers,last_name,Customer's last name.,True,confidential,Sara Martin (Head of Sales),customer,gold
+dim_customers,email,"Customer login email, trimmed and lower-cased.",True,confidential,Sara Martin (Head of Sales),customer,gold
+dim_customers,country_code,Standardized two-letter country code for the customer.,True,confidential,Sara Martin (Head of Sales),customer,gold
+dim_customers,loyalty_tier,Customer's normalized loyalty program tier.,True,confidential,Sara Martin (Head of Sales),customer,gold
+dim_customers,signup_date,Date the customer account was registered.,True,confidential,Sara Martin (Head of Sales),customer,gold
+dim_customers,has_marketing_consent,Whether the customer has given consent to marketing.,True,confidential,Sara Martin (Head of Sales),customer,gold
+dim_customers,lifetime_orders,Number of orders linked to the customer account.,True,confidential,Sara Martin (Head of Sales),customer,gold
+dim_customers,last_order_date,Most recent order date recorded for the customer account.,True,confidential,Sara Martin (Head of Sales),customer,gold
+dim_customers,lifetime_net_revenue_eur,"Total net revenue associated with the customer account over its order history, in euros.",True,confidential,Sara Martin (Head of Sales),customer,gold
+fct_orders,order_id,Technical identifier for a ShopFast order.,True,confidential,Sara Martin (Head of Sales),sales,gold
+fct_orders,net_revenue_eur,"Revenue from orders after refunds, excluding VAT and including shipping fees.
+Formula: (total_amount_eur - refunded_eur) / 1.20, rounded to 2 decimals.
+Owner: Paul Girard (Head of Finance) · Steward: Karim Benali (Analytics Engineer) · Status: approved (2026-11-25)",True,confidential,Sara Martin (Head of Sales),sales,gold
+fct_orders,customer_id,Identifier of the customer account that placed the order.,True,confidential,Sara Martin (Head of Sales),sales,gold
+fct_orders,order_date,Calendar date on which the order was placed.,True,confidential,Sara Martin (Head of Sales),sales,gold
+fct_orders,status,Standardized lifecycle status of the order.,True,confidential,Sara Martin (Head of Sales),sales,gold
+fct_orders,channel,Sales channel through which the order was placed.,True,confidential,Sara Martin (Head of Sales),sales,gold
+fct_orders,shipping_country,Country code for the order's shipping destination.,True,confidential,Sara Martin (Head of Sales),sales,gold
+fct_orders,gross_revenue_eur,"Order amount in euros before refunds, including VAT and shipping.",True,confidential,Sara Martin (Head of Sales),sales,gold
+fct_orders,refunded_eur,"Total amount refunded for the order, in euros.",True,confidential,Sara Martin (Head of Sales),sales,gold

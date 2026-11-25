@@ -1,0 +1,104 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: "One row per order with gross, refunded and net revenue. Source of the Sales dashboard and the Finance report."
+    meta:
+      owner: "Sara Martin (Head of Sales)"
+      steward: "Senior analyst"
+      domain: sales
+      tier: gold
+    columns:
+      - name: order_id
+        description: "Technical identifier for a ShopFast order."
+        data_tests: [unique, not_null]
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: net_revenue_eur
+        description: "{{ doc('net_revenue') }}"
+        tags: ["pii"]
+        meta: { classification: confidential }
+      # TODO: document the other columns
+      - name: customer_id
+        description: "Identifier of the customer account that placed the order."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: order_date
+        description: "Calendar date on which the order was placed."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: status
+        description: "Standardized lifecycle status of the order."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: channel
+        description: "Sales channel through which the order was placed."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: shipping_country
+        description: "Country code for the order's shipping destination."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: gross_revenue_eur
+        description: "Order amount in euros before refunds, including VAT and shipping."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: refunded_eur
+        description: "Total amount refunded for the order, in euros."
+        tags: ["pii"]
+        meta: { classification: confidential }
+
+  - name: dim_customers
+    description: "One row per customer account with profile information and lifetime order and net revenue metrics."
+    # TODO: meta owner / steward / domain / tier, column docs, PII tags
+    meta:
+      owner: "Sara Martin (Head of Sales)"
+      steward: "Karim Benali (Analytics Engineer)"
+      domain: customer
+      tier: gold
+    columns:
+      - name: customer_id
+        description: "Technical identifier for the customer account."
+        data_tests: [unique, not_null]
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: first_name
+        description: "Customer's first name."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: last_name
+        description: "Customer's last name."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: email
+        description: "Customer login email, trimmed and lower-cased."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: country_code
+        description: "Standardized two-letter country code for the customer."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: loyalty_tier
+        description: "Customer's normalized loyalty program tier."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: signup_date
+        description: "Date the customer account was registered."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: has_marketing_consent
+        description: "Whether the customer has given consent to marketing."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: lifetime_orders
+        description: "Number of orders linked to the customer account."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: last_order_date
+        description: "Most recent order date recorded for the customer account."
+        tags: ["pii"]
+        meta: { classification: confidential }
+      - name: lifetime_net_revenue_eur
+        description: "Total net revenue associated with the customer account over its order history, in euros."
+        tags: ["pii"]
+        meta: { classification: confidential }
