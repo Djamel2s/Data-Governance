@@ -1,0 +1,22 @@
+{
+  "data": {
+    "asset": {
+      "id": "ece37dcb-e5ad-4bcd-a078-0419fc95ce60",
+      "name": "orders"
+    },
+    "batch_definition": {
+      "id": "a246bf24-93d3-4d21-92c6-0892695e457b",
+      "name": "all_orders"
+    },
+    "datasource": {
+      "id": "e7dddd57-7c43-47c9-8794-814f2e677af4",
+      "name": "shopfast"
+    }
+  },
+  "id": "1895492d-4187-4d27-ba54-aef071a88f9a",
+  "name": "orders_validation",
+  "suite": {
+    "id": "49292682-fd19-4879-a527-fb5b56d2e05b",
+    "name": "orders_suite"
+  }
+}

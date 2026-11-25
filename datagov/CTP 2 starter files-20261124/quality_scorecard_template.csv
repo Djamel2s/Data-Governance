@@ -1,7 +1,16 @@
-dimension,rule_in_plain_words,column,how_you_measured_it,failing_rows,total_rows,score_pct,severity_high_medium_low,who_should_fix_owner_steward_custodian
-Completeness,email is filled,email,,,,,,
-Uniqueness,customer_id is unique,customer_id,,,,,,
-Validity,,,,,,,,
-Consistency,,,,,,,,
-Accuracy,,,,,,,,
-Timeliness,,,,,,,,
+dimension,rule_in_plain_words,column,how_you_measured_it,failing_rows,total_rows,score_pct,severity_high_medium_low,who_should_fix_owner_steward_custodian,action
+Completeness,email is filled,email,Counted missing email values,48,1241,96.13,medium,Steward,
+Uniqueness,customer_id is unique,customer_id,"Counted all rows with a repeated customer_id, including both rows in each duplicate pair",16,1241,98.71,high,Steward,
+Uniqueness,normalised email is unique,email,"Trimmed and lowercased email; counted non-empty rows whose normalised email repeats",120,1241,90.33,medium,Steward,
+Validity,email matches the required regex,email,"Counted rows not matching the regex; missing emails count as non-matches",67,1241,94.60,medium,Steward,
+Consistency,country uses a standard country code,country,"Counted non-empty values outside FR, DE, BE and ES; value_counts shows 17 distinct spellings",299,1241,75.91,medium,Steward,
+Consistency,signup_date uses YYYY-MM-DD,signup_date,Counted values not matching YYYY-MM-DD,303,1241,75.58,low,Steward,
+Validity,loyalty_tier is an allowed value,loyalty_tier,"Counted values outside bronze, silver, gold and platinum",13,1241,98.95,medium,Steward,
+Accuracy,birth_date is not before 1906 or after today,birth_date,"Parsed dates and counted values before 1906-01-01 or after today; unparseable dates are not counted by this range check",8,1241,99.36,medium,Steward,
+Validity,French postal_code has five digits,postal_code,"For country values normalised to FR, FRA or FRANCE, counted postal codes not matching five digits",48,1241,96.13,high,Steward,
+Uniqueness,Orders: order_id is unique,order_id,"Counted all rows with a duplicated order_id",14,5207,99.73,critical,Owner and Custodian,"Stop the load, keep yesterday's data, notify the Owner and Custodian"
+Validity,Orders: customer_id exists in customers,customer_id,"Counted customer IDs absent from the customers dataset",14,5207,99.73,high,Steward,"Quarantine orphan orders for review"
+Completeness,Orders: order_date is filled,order_date,"Counted missing order dates",11,5207,99.79,medium,Steward,"Review and repair missing dates"
+Accuracy,Orders: order_date is not in the future,order_date_dt,"Counted dates later than today",5,5207,99.90,medium,Steward,"Quarantine future date orders and check the source"
+Validity,Orders: status is an allowed value,status,"Counted values outside the allowed list",9,5207,99.83,medium,Steward,"Standardize the status and logs all correction"
+Accuracy,Orders: total_amount_eur is positive and below 10,000 EUR,total_amount_eur,"Counted values outside the strict bounds",6,5207,99.88,high,Owner and Steward,"Quarantine the rows; ask the Owner to confirm how to handle them"

@@ -20,6 +20,9 @@ naive = [E.ExpectColumnValuesToNotBeNull(column="payment_id"), E.ExpectColumnVal
 smart = naive + [
     # TODO: add 2 to 4 expectations that would have caught the cents incident.
     # Ideas: a range on each amount, a range on the mean or median, a regex on the text value (column "amount_txt").
+    E.ExpectColumnValuesToBeBetween(column="amount", min_value=0, max_value=5000),
+    E.ExpectColumnMeanToBeBetween(column="amount", min_value=100, max_value=1000),
+    E.ExpectColumnMedianToBeBetween(column="amount", min_value=100, max_value=500),
 ]
 
 def run(name, expectations, df):

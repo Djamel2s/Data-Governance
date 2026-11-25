@@ -1,0 +1,64 @@
+{
+  "expectations": [
+    {
+      "id": "f3711167-d100-4700-94b9-c9c7aa170f35",
+      "kwargs": {
+        "column": "payment_id"
+      },
+      "meta": {},
+      "severity": "critical",
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "65af3e80-b08f-4006-8c4f-466fa771f572",
+      "kwargs": {
+        "column": "payment_id"
+      },
+      "meta": {},
+      "severity": "critical",
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "35602ee8-8c15-4015-a3bf-be965f0bbb24",
+      "kwargs": {
+        "column": "amount"
+      },
+      "meta": {},
+      "severity": "critical",
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c7a09bd5-1177-4d88-a865-fc3d2b4c7dfc",
+      "kwargs": {
+        "column": "currency",
+        "value_set": [
+          "EUR"
+        ]
+      },
+      "meta": {},
+      "severity": "critical",
+      "type": "expect_column_values_to_be_in_set"
+    },
+    {
+      "id": "7b44fbc1-348a-4221-b01c-befac2a8d609",
+      "kwargs": {
+        "column": "method",
+        "value_set": [
+          "card",
+          "paypal",
+          "apple_pay",
+          "bank_transfer"
+        ]
+      },
+      "meta": {},
+      "severity": "critical",
+      "type": "expect_column_values_to_be_in_set"
+    }
+  ],
+  "id": "4dd49041-412b-4241-ac39-eaa0cdcbe004",
+  "meta": {
+    "great_expectations_version": "1.25.0"
+  },
+  "name": "naive_payments",
+  "notes": null
+}
